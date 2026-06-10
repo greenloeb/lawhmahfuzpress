@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lawh Mahfuz Press</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IM+Fell+English:ital@0;1&family=IM+Fell+English+SC&family=Reem+Kufi:wght@700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #1a1812;
+    --ink-muted: #4a4640;
+    --ink-faint: #7a756e;
+    --page: #f9f7f2;
+    --rule: #c8bfb0;
+    --max: 640px;
+  }
+
+  html { background: var(--page); color: var(--ink); overflow-y: scroll; }
+
+  body {
+    font-family: 'IM Fell English', Georgia, serif;
+    font-size: 17px;
+    line-height: 1.75;
+    background: var(--page);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .site-wrapper {
+    max-width: var(--max);
+    margin: 0 auto;
+    padding: 0 2rem;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* ── Header ── */
+  header {
+    padding: 3.5rem 0 1.75rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 2rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .header-left {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .press-name {
+    font-family: 'IM Fell English SC', 'IM Fell English', Georgia, serif;
+    font-size: 1.55rem;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin-bottom: 0.35rem;
+  }
+
+  .press-sub {
+    font-size: 0.88rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Header mark ── */
+  .header-mark {
+    border: 1.5px solid var(--ink);
+    padding: 10px 14px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    align-self: center;
+  }
+
+  .header-mark::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 0.4px solid var(--ink);
+    pointer-events: none;
+  }
+
+  .header-mark .ar {
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    color: var(--ink);
+    direction: rtl;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    font-style: normal;
+  }
+
+  /* ── Nav ── */
+  nav {
+    margin-top: 1.1rem;
+  }
+
+  nav a {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    text-decoration: none;
+    margin-right: 1.6rem;
+    transition: color 0.15s;
+  }
+
+  nav a:hover, nav a.active {
+    color: var(--ink);
+  }
+
+  /* ── Main content ── */
+  main {
+    flex: 1;
+    padding: 2rem 0 3rem;
+  }
+
+  /* ── Page sections ── */
+  .page { display: none; }
+  .page.active { display: block; }
+
+  h2 {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 1rem;
+    font-weight: normal;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  p {
+    margin-bottom: 1.2em;
+    color: var(--ink);
+  }
+
+  p:last-child { margin-bottom: 0; }
+
+  /* ── Home page ── */
+  .home-lead {
+    font-size: 1.06rem;
+    line-height: 1.8;
+    color: var(--ink);
+    margin-bottom: 2.5rem;
+  }
+
+  .epigraph {
+    font-style: italic;
+    color: var(--ink-muted);
+    border-left: 2px solid var(--rule);
+    padding-left: 1.25rem;
+    margin: 2rem 0;
+    font-size: 0.95rem;
+    line-height: 1.7;
+  }
+
+  .epigraph cite {
+    display: block;
+    font-style: normal;
+    font-size: 0.82rem;
+    color: var(--ink-faint);
+    margin-top: 0.6rem;
+    font-family: 'IM Fell English SC', serif;
+    letter-spacing: 0.04em;
+  }
+
+  /* ── Portfolio entries ── */
+  .portfolio-entry {
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .portfolio-entry:first-of-type { border-top: 1px solid var(--rule); }
+
+  .entry-title {
+    font-style: italic;
+    font-size: 1.02rem;
+    color: var(--ink);
+    margin-bottom: 0.15rem;
+  }
+
+  .entry-byline {
+    font-size: 0.88rem;
+    color: var(--ink-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .entry-pub {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    margin-bottom: 0.5rem;
+  }
+
+  .entry-role {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: var(--ink-muted);
+    margin-bottom: 0.45rem;
+  }
+
+  .entry-desc {
+    font-size: 0.92rem;
+    color: var(--ink-muted);
+    line-height: 1.65;
+    margin-bottom: 0;
+  }
+
+  /* ── Contact ── */
+  .contact-block {
+    margin-top: 1rem;
+  }
+
+  .contact-block p {
+    font-size: 0.95rem;
+    color: var(--ink-muted);
+    margin-bottom: 1em;
+  }
+
+  .contact-email {
+    display: inline-block;
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: border-color 0.15s, color 0.15s;
+  }
+
+  .contact-email:hover {
+    color: var(--ink-muted);
+    border-color: var(--ink-muted);
+  }
+
+  .reedsy-link {
+    color: var(--ink-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 1px;
+    transition: color 0.15s;
+  }
+
+  .reedsy-link:hover { color: var(--ink); }
+
+  /* ── Footer ── */
+  footer {
+    border-top: 1px solid var(--rule);
+    padding: 1.5rem 0 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.85rem;
+  }
+
+  .footer-device {
+    background: var(--ink);
+    padding: 6px 11px;
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .footer-device::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border: 0.4px solid var(--page);
+    opacity: 0.35;
+    pointer-events: none;
+  }
+
+  .footer-device .ar {
+    font-family: 'Reem Kufi', sans-serif;
+    font-weight: 700;
+    font-size: 24px;
+    color: var(--page);
+    direction: rtl;
+    line-height: 1;
+    position: relative;
+    z-index: 1;
+    font-style: normal;
+  }
+
+  .footer-text {
+    font-family: 'IM Fell English SC', serif;
+    font-size: 0.8rem;
+    font-style: normal;
+    color: var(--ink-faint);
+    letter-spacing: 0.01em;
+  }
+
+  /* ── Responsive ── */
+  @media (max-width: 480px) {
+    .press-name { font-size: 1.3rem; }
+    nav a { font-size: 0.78rem; margin-right: 1.1rem; }
+    body { font-size: 16px; }
+    header { flex-direction: column-reverse; align-items: flex-start; gap: 1.25rem; }
+    .header-mark { align-self: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<div class="site-wrapper">
+
+  <header>
+    <div class="header-left">
+      <p class="press-name">Lawh Mahfuz Press</p>
+      <p class="press-sub">Editorial services — Hunter V. McClure</p>
+      <nav>
+        <a href="#" class="active" data-page="home">Home</a>
+        <a href="#" data-page="about">About</a>
+        <a href="#" data-page="portfolio">Portfolio</a>
+        <a href="#" data-page="contact">Contact</a>
+      </nav>
+    </div>
+    <div class="header-mark">
+      <span class="ar">لوح محفوظ</span>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- Home -->
+    <section class="page active" id="page-home">
+      <p class="home-lead">Lawh Mahfuz Press provides editorial services in academic and literary publishing, with a focus on the history of philosophy, classical and medieval studies, Near Eastern studies, religion, theology, and politics.</p>
+
+      <blockquote class="epigraph">
+        To prune what is turgid, to elevate what is mean, to repress exuberance, arrange what is disorderly, introduce rhythm where it is lacking, and modify it where it is too emphatic, involves a twofold labour: for we have to condemn what had previously satisfied us and discover what had escaped our notice.
+        <cite>Quintilian, <em>Institutio Oratoria</em> X.4</cite>
+      </blockquote>
+
+      <p>Inquiries regarding editorial projects are welcome by <a href="mailto:editor@lawhmahfuzpress.com" class="contact-email">email</a> or through <a href="https://reedsy.com/hunter-mcclure" class="reedsy-link" target="_blank" rel="noopener">Reedsy</a>.</p>
+    </section>
+
+    <!-- About -->
+    <section class="page" id="page-about">
+      <h2>About</h2>
+      <p>Hunter V. McClure is a graduate student at St. John's College Graduate Institute in Santa Fe, New Mexico, where he studies the history of philosophy and politics. His primary scholarly interests include Aristotle's political thought and natural science, the reception of Greek philosophy in the medieval Islamic world, and the American political tradition. His undergraduate formation at the University of Alabama in Huntsville, in English literature, early modern studies, and philosophy, gave him a grounding in continental thought and in the literature of the seventeenth century that continues to inform his practice as an editor.</p>
+
+      <p>As of June 2026, he has had a role in bringing over 113 books to market as a copy-editor, line-editor, developmental editor, indexer, and subject-matter consultant. He works primarily with publishers in academic and literary publishing, especially in philosophy, theology, history, and classical education.</p>
+
+      <p>Lawh Mahfuz Press is his editorial imprint. Editorial inquiries may be directed to <a href="mailto:editor@lawhmahfuzpress.com" class="contact-email">editor@lawhmahfuzpress.com</a>, or through his <a href="https://reedsy.com/hunter-mcclure" class="reedsy-link" target="_blank" rel="noopener">Reedsy profile</a>.</p>
+    </section>
+
+    <!-- Portfolio -->
+    <section class="page" id="page-portfolio">
+      <h2>Selected Work</h2>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">The Foundations of Wisdom, Vol. I: Logic</p>
+        <p class="entry-byline">Fr. Sebastian Walshe, O.Praem.</p>
+        <p class="entry-pub">TAN Books · 2022</p>
+        <p class="entry-role">Developmental editor and subject-matter consultant</p>
+        <p class="entry-desc">The first volume of a four-part introductory philosophy series in the Thomistic tradition, covering the principles of logic as the foundational art of clear reasoning within the classical and scholastic tradition.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">The Foundations of Wisdom, Vol. II: Nature</p>
+        <p class="entry-byline">Fr. Sebastian Walshe, O.Praem.</p>
+        <p class="entry-pub">TAN Books · 2022</p>
+        <p class="entry-role">Developmental editor and subject-matter consultant</p>
+        <p class="entry-desc">The second volume of the series, covering the philosophy of nature within the classical and scholastic tradition.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">The Religion of Humanity: The Illusion of Our Times</p>
+        <p class="entry-byline">Pierre Manent</p>
+        <p class="entry-pub">St. Augustine's Press · 2022</p>
+        <p class="entry-role">Copy-editor and subject-matter consultant</p>
+        <p class="entry-desc">A critique of the modern religion of humanity by one of France's leading political philosophers, examining the secular faith in universal human dignity as a substitute for traditional religious and political community.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">Shakespeare's Reformation: Christian Humanism and the Death of God</p>
+        <p class="entry-byline">Nalin Ranasinghe and Lee Oser</p>
+        <p class="entry-pub">St. Augustine's Press · 2023</p>
+        <p class="entry-role">Copy-editor</p>
+        <p class="entry-desc">A study of Shakespeare's works through the lens of Christian humanism, examining the theological and philosophical stakes of the plays in the context of Reformation Europe.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">Shakespeare's Politic Comedy</p>
+        <p class="entry-byline">Will Morrisey</p>
+        <p class="entry-pub">St. Augustine's Press · 2023</p>
+        <p class="entry-role">Copy-editor</p>
+        <p class="entry-desc">A political-philosophical reading of Shakespeare's comedies, examining how they illuminate questions of law, nature, and the good life.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">The Declaration of America: Our Principles in Thought and Action</p>
+        <p class="entry-byline">Richard Ferrier</p>
+        <p class="entry-pub">St. Augustine's Press · 2023</p>
+        <p class="entry-role">Copy-editor and subject-matter consultant</p>
+        <p class="entry-desc">An examination of the principles underlying the American Declaration of Independence and their continuing significance for American political life and self-understanding.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">The Good Teacher: Ten Key Pedagogical Principles That Will Transform Your Teaching</p>
+        <p class="entry-byline">Christopher A. Perrin and Carrie Eben</p>
+        <p class="entry-pub">Classical Academic Press · 2025</p>
+        <p class="entry-role">Copy-editor</p>
+        <p class="entry-desc">A guide to classical pedagogy organized around ten timeless principles of teaching, drawing on the liberal arts tradition to address how humans learn, develop, and grow.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">Scientist and Catholic: Pierre Duhem</p>
+        <p class="entry-byline">Stanley L. Jaki</p>
+        <p class="entry-pub">Christendom Press · 2025 (revised edition)</p>
+        <p class="entry-role">Copy-editor of the revised edition</p>
+        <p class="entry-desc">A systematic introduction to the work of the French physicist and historian of science Pierre Duhem, including English translations of twenty-seven selections from his writings.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">The Justice Reader: Classical Readings on the Cardinal Virtue of Justice</p>
+        <p class="entry-byline">Classical Academic Press</p>
+        <p class="entry-pub">Classical Academic Press · 2025</p>
+        <p class="entry-role">Copy-editor and subject-matter consultant</p>
+        <p class="entry-desc">An anthology of approximately fifty selections on justice drawn from the great books of the ancient, medieval, and modern periods, developed in partnership with the Classic Learning Test.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">Humanitas: The Early Middle Ages</p>
+        <p class="entry-byline">Junius Johnson</p>
+        <p class="entry-pub">Classical Academic Press · 2025</p>
+        <p class="entry-role">Copy-editor, subject-matter consultant, and author contributor</p>
+        <p class="entry-desc">A comprehensive humanities anthology spanning the early medieval period, tracing the development of Christian civilization, philosophy, and culture from Late Antiquity through the Norman Conquest.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">The Ancient City</p>
+        <p class="entry-byline">Numa Denis Fustel de Coulanges; translated by Faith Bottum</p>
+        <p class="entry-pub">St. Augustine's Press · 2026</p>
+        <p class="entry-role">Line-editor of the translation</p>
+        <p class="entry-desc">A new translation of Fustel de Coulanges's landmark study of religion and politics in ancient Greek and Roman civilization, examining how the sacred foundations of the city-state shaped and ultimately determined its fate.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">Lost Letters of the American Revolution</p>
+        <p class="entry-byline">Elizabeth Winslow</p>
+        <p class="entry-pub">2026</p>
+        <p class="entry-role">Developmental editor</p>
+        <p class="entry-desc">A curated selection of authentic eighteenth-century correspondence from the Revolutionary era, presented with their original spelling and punctuation intact.</p>
+      </div>
+
+      <div class="portfolio-entry">
+        <p class="entry-title">Humanitas: High &amp; Late Middle Ages</p>
+        <p class="entry-byline">Matthew J. Smith</p>
+        <p class="entry-pub">Classical Academic Press · 2026</p>
+        <p class="entry-role">Copy-editor, subject-matter consultant, and author contributor</p>
+        <p class="entry-desc">The sequel to <em>Humanitas: The Early Middle Ages</em>, covering the High and Late medieval periods from the Norman Conquest through the fall of Constantinople. Chapters on Islamic civilization and philosophy, Scholasticism, and the medieval orient.</p>
+      </div>
+
+    </section>
+
+    <!-- Contact -->
+    <section class="page" id="page-contact">
+      <h2>Contact</h2>
+      <div class="contact-block">
+        <p>Inquiries regarding copy-editing, line-editing, developmental editing, indexing, and subject-matter consultation are welcome by email. Project requests may also be submitted through my <a href="https://reedsy.com/hunter-mcclure" class="reedsy-link" target="_blank" rel="noopener">Reedsy profile</a>, though direct correspondence is preferred where possible.</p>
+        <p><a href="mailto:editor@lawhmahfuzpress.com" class="contact-email">editor@lawhmahfuzpress.com</a></p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <div class="footer-device">
+      <span class="ar">لوح</span>
+    </div>
+    <span class="footer-text">Lawh Mahfuz Press &nbsp;·&nbsp; Santa Fe, NM</span>
+  </footer>
+
+</div>
+
+<script>
+  const links = document.querySelectorAll('nav a');
+  const pages = document.querySelectorAll('.page');
+
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.dataset.page;
+
+      links.forEach(l => l.classList.remove('active'));
+      pages.forEach(p => p.classList.remove('active'));
+
+      link.classList.add('active');
+      document.getElementById('page-' + target).classList.add('active');
+
+      window.scrollTo(0, 0);
+    });
+  });
+</script>
+
+</body>
+</html>
